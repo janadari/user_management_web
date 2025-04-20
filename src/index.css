@@ -1,0 +1,15 @@
+/* index.css */
+:root[data-theme='light'] {
+  --bg-color: white;
+  --text-color: black;
+}
+
+:root[data-theme='dark'] {
+  --bg-color: #121212;
+  --text-color: white;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
