@@ -28,7 +28,9 @@
 }
 
 body {
+  margin: 0px;
   background-color: var(--bg-color);
+  /* background-color: var(--surface); */
   color: var(--text-color);
 }
 
@@ -85,6 +87,101 @@ align-items: center;
 
 .input-box {
    padding-bottom: 20px;
+}
+
+.header{
+  background-color:var (--bg-color);
+  padding: 20px;
+
+  /* padding: 20px; */
+  /* box-shadow: 0 4px 4px -2px rgba(167, 164, 164, 0.3); */
+}
+
+.user-container{
+  width: 100%;
+
+  padding: 0px;
+  background-color: var(--surface);
+
+}
+ 
+.user-card{
+
+  width: 70%;
+  margin: auto;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  background-color: var(--bg-color);
+  border: 0.5px solid var(--border);
+}
+
+.user-list{
+  padding-top: 40px;
+  padding-bottom: 40px;
+  min-height: 100vh;
+}
+
+
+.search-box{
+margin-bottom: 12px;
+
+}
+
+.user-info{
+  color: var(--secondary_text);
+}
+
+.filter-options{
+  width: 70%;
+  margin: auto;
+}
+
+.user-img{
+  margin-right:40px;
+  border-radius: 40px; /* for a circular image */
+}
+
+.MuiInputBase-root {
+  color: var(--text-color) !important ;
+  background-color: var(--bg-color)  !important;;
+  
+}
+
+.MuiInputLabel-root {
+  color:var(--text-color)  !important;;
+}
+
+.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border-color: var(--border)  !important;
+
+
+}
+
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: var(--text-color)  !important;;
+}
+
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--text-color)  !important;;
+}
+
+.MuiFormHelperText-root {
+  color: var(--text-color)  !important;;
+}
+
+.MuiSelect-icon {
+  color: var(--text-color)  !important;;
+}
+.MuiInputLabel-root{
+  color: var(--text-color)  !important;;
+}
+.MuiInputLabel-shrink{
+  color: var(--text-color)  !important;;
+}
+
+.login-img{
+  width: 400px;
+  height: 400px;
 }
 
 /* 991.98  for tablet*/

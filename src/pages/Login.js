@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthProvider";
-import loginImg from "../images/login-img.png";
+import loginImg from "../images/login-image.png";
 import { Button, TextField } from "@mui/material";
 
 function Login() {
@@ -13,19 +13,19 @@ function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
-    if (username === "admin" && password === "password") {
-      setError("");
-      login(() => navigate("/"));
-    } else {
-      setError("Invalid username or password");
-    }
+    login(() => navigate("/"));
+    // if (username === "admin" && password === "password") {
+    //   setError("");
+    //   login(() => navigate("/"));
+    // } else {
+    //   setError("Invalid username or password");
+    // }
   };
 
   return (
     <div className="flex-container login-container">
       <div className="flex-1 flex-right">
-        <img src={loginImg} />
+        <img src={loginImg} className="login-img" />
       </div>
       <div className="flex-1 ">
         <form onSubmit={handleLogin} className="flex-row-container">

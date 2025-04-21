@@ -3,6 +3,8 @@ import { useAuth } from "../auth/AuthProvider";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -18,12 +20,19 @@ const Header = () => {
 
   if (!isAuthenticated) return;
   return (
-    <div className=" flex-1">
+    <div className=" flex-1 header">
+      <div>
+        <h1 style={{ margin: "0px" }}>User Managment web</h1>
+      </div>
       <div className="flex-right flex-1">
-        <Link to="/" onClick={handleLogout}>
-          <button>Logout</button>
-        </Link>
         <ThemeSwitcher />
+        <Button
+          variant="outlined"
+          onClick={handleLogout}
+          startIcon={<LogoutIcon />}
+        >
+          Logout
+        </Button>
       </div>
     </div>
   );
