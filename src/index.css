@@ -1,15 +1,92 @@
+
+
 /* index.css */
 :root[data-theme='light'] {
-  --bg-color: white;
-  --text-color: black;
+  --bg-color: #F6F6F6;
+  --surface:#B1DDD5;
+  --text-color: #2F2F3E;
+  --secondary_text:#6D7380;
+  --button-color:#2F8672;
+  --button-hover:#246A5A;
+  --border:#BFC5D2;
+  --error:#E25B45
+  
 }
 
 :root[data-theme='dark'] {
-  --bg-color: #121212;
-  --text-color: white;
+  --bg-color: #1D1D2C;
+  --surface:#2F4F4F;
+  --text-color: #EDEDED;
+  --secondary_text:#A4A4B5;
+  --button-color:#B1DDD5;
+  --button-hover:#A0CEC3;
+  --border:#3E3E50;
+  --error:#E25B45
+
+
+ 
 }
 
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
+}
+
+
+
+.flex-container{
+  display: flex;
+  justify-content: space-around;
+  flex:1;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 40px;
+}
+
+.login-container{
+  width: 60%;
+  margin: auto;
+}
+
+.flex-row-container{
+  display: flex;
+flex-direction: column;
+flex: 1;
+}
+
+.login-hello{
+margin-bottom: 0px;
+}
+
+.login-welcome{
+  margin-top: 10px;
+}
+
+.red{
+  background-color: #9c27b0 !important;
+  color: white;
+}
+
+.flex-1{
+  display: flex;
+flex:1
+}
+.flex-left{
+  justify-content: flex-start;
+  align-items: center;
+  }
+
+  .flex-right{
+    justify-content: flex-end;
+    align-items: center;
+    }
+
+.flex-center{
+justify-content: center;
+align-items: center;
+}
+
+.input-box {
+   padding-bottom: 20px;
 }
