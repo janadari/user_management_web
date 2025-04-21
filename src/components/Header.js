@@ -18,8 +18,8 @@ const Header = () => {
 
   if (!isAuthenticated) return;
   return (
-    <div>
-      <div>
+    <div className=" flex-1">
+      <div className="flex-right flex-1">
         <Link to="/" onClick={handleLogout}>
           <button>Logout</button>
         </Link>

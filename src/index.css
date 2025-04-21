@@ -63,19 +63,15 @@ margin-bottom: 0px;
   margin-top: 10px;
 }
 
-.red{
-  background-color: #9c27b0 !important;
-  color: white;
-}
 
 .flex-1{
-  display: flex;
+display: flex;
 flex:1
 }
 .flex-left{
   justify-content: flex-start;
   align-items: center;
-  }
+}
 
   .flex-right{
     justify-content: flex-end;
@@ -89,4 +85,24 @@ align-items: center;
 
 .input-box {
    padding-bottom: 20px;
+}
+
+/* 991.98  for tablet*/
+/* 768px for mobile */
+@media screen and (max-width: 991.98px) {
+
+  .flex-container {
+      flex-direction: column-reverse;
+height:auto
+  }
+
+  .login-container{
+    width: 100%;
+margin-top: 80px;
+  }
+  .flex-1{
+    width: 80%;
+justify-content: center;
+
+  }
 }
