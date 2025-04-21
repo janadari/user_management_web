@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthProvider";
 import loginImg from "../images/login-img.png";
@@ -7,9 +7,19 @@ import { Button, TextField } from "@mui/material";
 function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleLogin = () => {
-    login(() => navigate("/"));
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    if (username === "admin" && password === "password") {
+      setError("");
+      login(() => navigate("/"));
+    } else {
+      setError("Invalid username or password");
+    }
   };
 
   return (
@@ -18,34 +28,41 @@ function Login() {
         <img src={loginImg} />
       </div>
       <div className="flex-1 ">
-        <div className="flex-row-container">
+        <form onSubmit={handleLogin} className="flex-row-container">
           <h4 className="login-hello">Hello,</h4>
           <h1 className="login-welcome">Welcome</h1>
 
           <div className="input-box">
             <TextField
               fullWidth
-              id="outlined-basic"
-              label="username"
+              label="Username"
               variant="outlined"
-              helperText="use admin as the username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              helperText="Use 'admin' as the username"
             />
           </div>
 
           <div className="input-box">
             <TextField
               fullWidth
-              id="outlined-basic"
-              label="password"
+              label="Password"
+              type="password"
               variant="outlined"
-              helperText="use password as the username"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              helperText="Use 'password' as the password"
             />
           </div>
 
-          <Button variant="contained" onClick={handleLogin} className="red">
+          {error && (
+            <div style={{ color: "red", marginBottom: "10px" }}>{error}</div>
+          )}
+
+          <Button variant="contained" type="submit" className="red">
             Sign In
           </Button>
-        </div>
+        </form>
       </div>
     </div>
   );
