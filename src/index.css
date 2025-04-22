@@ -100,6 +100,7 @@ body {
   top: 0;
   width: 100%;
   z-index: 999;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .user-container {
@@ -118,7 +119,7 @@ body {
   border-radius: 12px;
   background-color: var(--bg-color);
   border: 0.5px solid var(--border);
-  box-shadow: 1px 2px var(--button-color)
+  box-shadow: 0 2px 3px var(--secondary_text);
 }
 
 .user-list {
