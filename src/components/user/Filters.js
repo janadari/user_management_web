@@ -10,7 +10,6 @@ const Filters = ({ setSortBy, setOrder }) => {
   const [sortTypes, setSortTypes] = useState("firstName");
 
   const handleChange = (event) => {
-    console.log(event.target.value);
     setSortTypes(event.target.value);
     setSortBy(event.target.value);
   };

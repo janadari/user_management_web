@@ -9,12 +9,10 @@ const SearchBar = ({ searchUsers, clearSearch }) => {
   const [debouncedTerm, setDebouncedTerm] = useState("");
 
   useEffect(() => {
-    console.log("searchterm", searchTerm);
-
     if (searchTerm) {
       const handler = setTimeout(() => {
         setDebouncedTerm(searchTerm);
-      }, 500); // debounce time in ms
+      }, 500); // debounce in 500ms
 
       return () => {
         clearTimeout(handler);
@@ -26,7 +24,6 @@ const SearchBar = ({ searchUsers, clearSearch }) => {
 
   useEffect(() => {
     if (debouncedTerm) {
-      console.log("search term :: ", debouncedTerm);
       searchUsers(debouncedTerm);
     }
   }, [debouncedTerm]);

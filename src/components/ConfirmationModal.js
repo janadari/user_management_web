@@ -15,10 +15,6 @@ const ConfirmationModal = ({ open, onClose, onConfirm, message }) => {
       maxWidth="sm"
       fullWidth
       sx={{
-        "& .MuiDialogTitle-root": {
-          backgroundColor: "#f0f0f0",
-          fontWeight: "bold",
-        },
         "& .MuiDialogContent-root": {
           padding: "24px",
         },

@@ -203,6 +203,13 @@ body {
   ;
 }
 
+ .MuiDialogTitle-root {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+  font-weight: bold;
+
+}
+
 .fab {
   position: fixed;
   bottom: 4%;

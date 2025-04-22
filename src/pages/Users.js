@@ -155,6 +155,7 @@ function Users() {
   // clear search
   function clearSearch() {
     setFilteredList(usersList);
+    setSearchTerm();
   }
 
   // edit user
