@@ -21,9 +21,9 @@ const UserCard = React.memo(({ id, user, onDelete, onEdit }) => {
             {user?.firstName} {user?.lastName}
           </h2>
 
-          <p className="user-info">{user?.email}</p>
+          <p className="user-info">Email : {user?.email}</p>
 
-          <p className="user-info">{user?.age}</p>
+          <p className="user-info">Age : {user?.age}</p>
         </div>
       </div>
       <div
