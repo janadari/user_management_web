@@ -13,6 +13,8 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
+import Notifications from "../components/Notification";
+import ConfirmationModal from "components/ConfirmationModal";
 
 function Users() {
   const [usersList, setUsersList] = useState([]);
@@ -32,9 +34,16 @@ function Users() {
   const [filteredList, setFilteredList] = useState([]);
   const bottomRef = useRef(null);
 
+  const [notificationOpen, setNotificationOpen] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState(
+    "User added successfully!"
+  );
+
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
 
+  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
+  const [userToUPdate, setUserToUPdate] = useState();
   useEffect(() => {
     async function fetchData() {
       await fetchUsersList();
@@ -93,6 +102,9 @@ function Users() {
     ]);
     setOpenModal(false);
     clearForm();
+
+    setNotificationMessage("User added successfully!");
+    setNotificationOpen(true);
   }
 
   function clearForm() {
@@ -132,12 +144,23 @@ function Users() {
   }
 
   function onDelete(user) {
-    console.log("user", user);
-
-    const updatedList = usersList.filter((item) => item !== user);
-    setUsersList(updatedList);
+    setUserToUPdate(user);
+    setOpenConfirmationModal(true);
   }
 
+  function handleConfirm() {
+    const updatedList = usersList.filter((item) => item !== userToUPdate);
+    setUsersList(updatedList);
+
+    setNotificationMessage("Successfully Deleted");
+    setNotificationOpen(true);
+
+    handleCOnfirmationModalClose();
+  }
+
+  function handleCOnfirmationModalClose() {
+    setOpenConfirmationModal(false);
+  }
   return (
     <div className="user-container">
       <div className="user-list">
@@ -233,6 +256,19 @@ function Users() {
         </Modal>
       </div>
       <div ref={bottomRef} />
+
+      <Notifications
+        open={notificationOpen}
+        onClose={() => setNotificationOpen(false)}
+        message={notificationMessage}
+      />
+
+      <ConfirmationModal
+        open={openConfirmationModal}
+        onClose={handleCOnfirmationModalClose}
+        onConfirm={handleConfirm}
+        message="Are you sure you want to REMOVE this user?"
+      />
     </div>
   );
 }
