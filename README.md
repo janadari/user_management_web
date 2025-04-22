@@ -71,7 +71,7 @@ To test mobile responsiveness:
 
 you can see the demo here
 
-[Link Text](https://user-management-web-kohl.vercel.app/login)
+https://user-management-web-kohl.vercel.app/login
 
 
 
