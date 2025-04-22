@@ -40,7 +40,7 @@ Since this is a test project,
 
 * Existing users show images from their image URLs; newly added users get a default image.
 
-* Dark mode is enabled by default (personal preference).
+* Dark mode is enabled by default (personal preference).(The design of this project has been created by me.)
 
 * Responsive design: the same layout is used for both mobile and tablet views.
 
