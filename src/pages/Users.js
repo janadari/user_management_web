@@ -15,6 +15,7 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import Notifications from "../components/Notification";
 import ConfirmationModal from "components/ConfirmationModal";
+import AddAndUpdateUserModal from "components/user/AddAndUpdateUserModal";
 
 function Users() {
   const [usersList, setUsersList] = useState([]);
@@ -41,6 +42,8 @@ function Users() {
 
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
+
+  const [mode, setMode] = useState("add");
 
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
   const [userToUPdate, setUserToUPdate] = useState();
@@ -87,31 +90,40 @@ function Users() {
     }
   }
 
-  async function saveUser(e) {
-    e.preventDefault();
+  async function saveUser(userData) {
+    if (mode === "update") {
+      updateUser(userData);
+    } else {
+      saveNewUser(userData);
+    }
+  }
 
+  function saveNewUser(userData) {
     setUsersList([
       {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        age: age,
+        firstName: userData?.firstName,
+        lastName: userData?.lastName,
+        email: userData?.email,
+        age: userData?.age,
         id: Date.now(),
       },
       ...usersList,
     ]);
     setOpenModal(false);
-    clearForm();
 
     setNotificationMessage("User added successfully!");
     setNotificationOpen(true);
   }
 
-  function clearForm() {
-    setFirstName("");
-    setLastName("");
-    setAge("");
-    setEmail("");
+  function updateUser(userData) {
+    const updatedUsers = usersList.map((user) =>
+      user.id === userToUPdate.id ? { ...user, ...userData } : user
+    );
+    setUsersList(updatedUsers);
+    setOpenModal(false);
+
+    setNotificationMessage("User updated successfully!");
+    setNotificationOpen(true);
   }
 
   function searchUsers(searchTerm) {
@@ -141,6 +153,9 @@ function Users() {
 
   function onEdit(user) {
     console.log(user);
+    setUserToUPdate(user);
+    setMode("update");
+    setOpenModal(true);
   }
 
   function onDelete(user) {
@@ -185,75 +200,27 @@ function Users() {
 
             <div className="fab">
               <Tooltip title="Add New User">
-                <Fab color="primary" aria-label="add" onClick={handleOpen}>
+                <Fab
+                  color="primary"
+                  aria-label="add"
+                  onClick={() => {
+                    handleOpen();
+                    setMode("add");
+                  }}
+                >
                   <AddIcon />
                 </Fab>
               </Tooltip>
             </div>
           </>
         )}
-
-        <Modal
-          open={openModal}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box className="box">
-            <form onSubmit={saveUser} className="flex-row-container">
-              <Typography
-                className="modal-modal-title"
-                variant="h6"
-                component="h2"
-              >
-                Add A New User
-              </Typography>
-              <div className="input-box">
-                <TextField
-                  fullWidth
-                  label="FirstName"
-                  variant="outlined"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                />
-              </div>
-
-              <div className="input-box">
-                <TextField
-                  fullWidth
-                  label="LastName"
-                  variant="outlined"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-              </div>
-              <div className="input-box">
-                <TextField
-                  fullWidth
-                  label="Email"
-                  variant="outlined"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div className="input-box">
-                <TextField
-                  fullWidth
-                  type="number"
-                  label="Age"
-                  variant="outlined"
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                />
-              </div>
-              <div className="modal-btn">
-                <Button variant="contained" type="submit">
-                  Save
-                </Button>
-              </div>
-            </form>
-          </Box>
-        </Modal>
+        <AddAndUpdateUserModal
+          openModal={openModal}
+          handleClose={handleClose}
+          saveUser={saveUser}
+          userData={userToUPdate}
+          mode={mode}
+        />
       </div>
       <div ref={bottomRef} />
 
