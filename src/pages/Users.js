@@ -16,6 +16,7 @@ import Button from "@mui/material/Button";
 import Notifications from "../components/Notification";
 import ConfirmationModal from "components/ConfirmationModal";
 import AddAndUpdateUserModal from "components/user/AddAndUpdateUserModal";
+import noResultsImg from "../images/no-results.png";
 
 function Users() {
   const [usersList, setUsersList] = useState([]);
@@ -26,7 +27,8 @@ function Users() {
   const [sortBy, setSortBy] = useState("firstName");
   // default is descending order
   const [order, setOrder] = useState("asc");
-
+  // search term
+  const [searchTerm, setSearchTerm] = useState();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState("");
@@ -56,7 +58,12 @@ function Users() {
 
   useEffect(() => {
     let updatedList = sortList(sortBy, order);
-    setFilteredList(updatedList);
+
+    if (searchTerm) {
+      filterUsers(searchTerm);
+    } else {
+      setFilteredList(updatedList);
+    }
   }, [usersList, sortBy, order]);
 
   function sortList(sortBy, order) {
@@ -128,6 +135,7 @@ function Users() {
 
   function searchUsers(searchTerm) {
     console.log("search terms", searchTerm);
+    setSearchTerm(searchTerm);
     filterUsers(searchTerm);
   }
 
@@ -189,14 +197,25 @@ function Users() {
 
             <Filters setSortBy={setSortBy} setOrder={setOrder} />
 
-            {filteredList?.map((user) => (
-              <UserCard
-                key={user.id}
-                user={user}
-                onEdit={() => onEdit(user)}
-                onDelete={() => onDelete(user)}
-              />
-            ))}
+            {filteredList && filteredList.length > 0 ? (
+              filteredList.map((user) => (
+                <UserCard
+                  key={user.id}
+                  user={user}
+                  onEdit={() => onEdit(user)}
+                  onDelete={() => onDelete(user)}
+                />
+              ))
+            ) : (
+              <div className="empty-state-container">
+                <img
+                  className="empty-state"
+                  src={noResultsImg}
+                  alt="No users found"
+                />
+                <p>No users found</p>
+              </div>
+            )}
 
             <div className="fab">
               <Tooltip title="Add New User">

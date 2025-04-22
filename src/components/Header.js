@@ -20,19 +20,21 @@ const Header = () => {
 
   if (!isAuthenticated) return;
   return (
-    <div className=" flex-1 header">
-      <div>
-        <h1 style={{ margin: "0px" }}>User Managment web</h1>
-      </div>
-      <div className="flex-right flex-1">
-        <ThemeSwitcher />
-        <Button
-          variant="outlined"
-          onClick={handleLogout}
-          startIcon={<LogoutIcon />}
-        >
-          Logout
-        </Button>
+    <div className="header-container">
+      <div className=" header  header-flex ">
+        <div>
+          <h1 style={{ margin: "0px" }}>User Managment web</h1>
+        </div>
+        <div className="flex-right header-action-container ">
+          <ThemeSwitcher />
+          <Button
+            variant="outlined"
+            onClick={handleLogout}
+            startIcon={<LogoutIcon />}
+          >
+            Logout
+          </Button>
+        </div>
       </div>
     </div>
   );

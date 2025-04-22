@@ -37,7 +37,7 @@ const SearchBar = ({ searchUsers, clearSearch }) => {
   }
   return (
     <div className="filter-options">
-      <div className="search-box flex-1">
+      <div className="search-box search-flex">
         <div className="flex-right flex-1">
           <InputBase
             style={{

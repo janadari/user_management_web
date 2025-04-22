@@ -15,7 +15,7 @@ const ThemeSwitcher = () => {
           onClick={toggleTheme}
           startIcon={<DarkModeIcon />}
         >
-          Switch to Dark Mode
+          Dark Mode
         </Button>
       ) : (
         <Button
@@ -23,7 +23,7 @@ const ThemeSwitcher = () => {
           onClick={toggleTheme}
           startIcon={<LightModeIcon />}
         >
-          Switch to Light Mode
+          Light Mode
         </Button>
       )}
     </div>

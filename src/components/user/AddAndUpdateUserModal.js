@@ -50,6 +50,7 @@ const AddAndUpdateUserModal = ({
 
           <div className="input-box">
             <TextField
+              required
               fullWidth
               label="FirstName"
               variant="outlined"
@@ -60,6 +61,7 @@ const AddAndUpdateUserModal = ({
 
           <div className="input-box">
             <TextField
+              required
               fullWidth
               label="LastName"
               variant="outlined"
@@ -70,7 +72,9 @@ const AddAndUpdateUserModal = ({
 
           <div className="input-box">
             <TextField
+              required
               fullWidth
+              type="email"
               label="Email"
               variant="outlined"
               value={email}
@@ -80,6 +84,7 @@ const AddAndUpdateUserModal = ({
 
           <div className="input-box">
             <TextField
+              required
               fullWidth
               type="number"
               label="Age"

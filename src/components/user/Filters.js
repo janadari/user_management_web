@@ -27,8 +27,8 @@ const Filters = ({ setSortBy, setOrder }) => {
 
   return (
     <div className="filter-options">
-      <div className="search-box flex-1">
-        <div className="flex-right flex-1">
+      <div className="search-box search-flex">
+        <div className="flex-right search-flex">
           <InputLabel className="sort-by">Sort By </InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -38,9 +38,9 @@ const Filters = ({ setSortBy, setOrder }) => {
             onChange={handleChange}
             style={{ minWidth: "100px" }}
           >
-            <MenuItem value={"firstName"}>first name</MenuItem>
-            <MenuItem value={"lastName"}>last name</MenuItem>
-            <MenuItem value={"age"}>age</MenuItem>
+            <MenuItem value={"firstName"}>First Name</MenuItem>
+            <MenuItem value={"lastName"}>Last Name</MenuItem>
+            <MenuItem value={"age"}>Age</MenuItem>
           </Select>
 
           <Tooltip

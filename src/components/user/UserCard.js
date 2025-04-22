@@ -7,7 +7,7 @@ import EditIcon from "@mui/icons-material/Edit";
 const UserCard = React.memo(({ id, user, onDelete, onEdit }) => {
   return (
     <div className=" user-card">
-      <div className="flex-1" style={{ padding: "20px" }}>
+      <div className="header-flex-container" style={{ padding: "20px" }}>
         <div className="user-img">
           <img
             src={user?.image || defaultImg}
