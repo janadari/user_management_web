@@ -1,6 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../auth/AuthProvider";
 import UserCard from "../components/user/UserCard";
 import { CircularProgress } from "@mui/material";
 import SearchBar from "../components/user/SearchBar";
@@ -8,11 +6,6 @@ import Filters from "../components/user/Filters";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import Tooltip from "@mui/material/Tooltip";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import Button from "@mui/material/Button";
 import Notifications from "../components/Notification";
 import ConfirmationModal from "components/ConfirmationModal";
 import AddAndUpdateUserModal from "components/user/AddAndUpdateUserModal";
@@ -29,15 +22,11 @@ function Users() {
   const [order, setOrder] = useState("asc");
   // search term
   const [searchTerm, setSearchTerm] = useState();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [age, setAge] = useState("");
-  const [email, setEmail] = useState("");
 
   const [filteredList, setFilteredList] = useState([]);
-  const bottomRef = useRef(null);
 
   const [notificationOpen, setNotificationOpen] = useState(false);
+
   const [notificationMessage, setNotificationMessage] = useState(
     "User added successfully!"
   );
@@ -48,7 +37,10 @@ function Users() {
   const [mode, setMode] = useState("add");
 
   const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
+
   const [userToUPdate, setUserToUPdate] = useState();
+
+  // fecth user data from API
   useEffect(() => {
     async function fetchData() {
       await fetchUsersList();
@@ -56,6 +48,7 @@ function Users() {
     fetchData();
   }, []);
 
+  // get filtered results when userList, sortBy or order changes
   useEffect(() => {
     let updatedList = sortList(sortBy, order);
 
@@ -66,9 +59,22 @@ function Users() {
     }
   }, [usersList, sortBy, order]);
 
-  function sortList(sortBy, order) {
-    console.log("sortby", order, sortBy);
+  // fetch user data from API
+  async function fetchUsersList() {
+    try {
+      setLoading(true);
+      const res = await fetch("https://dummyjson.com/users");
+      const json = await res.json();
+      setUsersList(json?.users);
+    } catch (e) {
+      console.log("error fetching data", e);
+    } finally {
+      setLoading(false);
+    }
+  }
 
+  // sorting function
+  function sortList(sortBy, order) {
     return usersList.sort((a, b) => {
       let valueA = a[sortBy];
       let valueB = b[sortBy];
@@ -84,19 +90,7 @@ function Users() {
     });
   }
 
-  async function fetchUsersList() {
-    try {
-      setLoading(true);
-      const res = await fetch("https://dummyjson.com/users");
-      const json = await res.json();
-      setUsersList(json?.users);
-    } catch (e) {
-      console.log("error fetching data", e);
-    } finally {
-      setLoading(false);
-    }
-  }
-
+  // save new user or update a user
   async function saveUser(userData) {
     if (mode === "update") {
       updateUser(userData);
@@ -105,6 +99,7 @@ function Users() {
     }
   }
 
+  // to save new user
   function saveNewUser(userData) {
     setUsersList([
       {
@@ -122,6 +117,7 @@ function Users() {
     setNotificationOpen(true);
   }
 
+  // for update user
   function updateUser(userData) {
     const updatedUsers = usersList.map((user) =>
       user.id === userToUPdate.id ? { ...user, ...userData } : user
@@ -133,12 +129,13 @@ function Users() {
     setNotificationOpen(true);
   }
 
+  // set search users
   function searchUsers(searchTerm) {
-    console.log("search terms", searchTerm);
     setSearchTerm(searchTerm);
     filterUsers(searchTerm);
   }
 
+  // search users by name (first and last)
   function filterUsers(searchTerm) {
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
@@ -155,22 +152,25 @@ function Users() {
     }
   }
 
+  // clear search
   function clearSearch() {
     setFilteredList(usersList);
   }
 
+  // edit user
   function onEdit(user) {
-    console.log(user);
     setUserToUPdate(user);
     setMode("update");
     setOpenModal(true);
   }
 
+  // delete user
   function onDelete(user) {
     setUserToUPdate(user);
     setOpenConfirmationModal(true);
   }
 
+  // confirm delete user
   function handleConfirm() {
     const updatedList = usersList.filter((item) => item !== userToUPdate);
     setUsersList(updatedList);
@@ -181,13 +181,16 @@ function Users() {
     handleCOnfirmationModalClose();
   }
 
+  // close delete confirmation modal
   function handleCOnfirmationModalClose() {
     setOpenConfirmationModal(false);
   }
+
   return (
     <div className="user-container">
       <div className="user-list">
         {loading ? (
+          // progressbar to show laoding
           <div className="flex-container">
             <CircularProgress color="white" />
           </div>
@@ -233,6 +236,8 @@ function Users() {
             </div>
           </>
         )}
+
+        {/* user add / update modal */}
         <AddAndUpdateUserModal
           openModal={openModal}
           handleClose={handleClose}
@@ -241,14 +246,15 @@ function Users() {
           mode={mode}
         />
       </div>
-      <div ref={bottomRef} />
 
+      {/* notiication modal */}
       <Notifications
         open={notificationOpen}
         onClose={() => setNotificationOpen(false)}
         message={notificationMessage}
       />
 
+      {/* delete confirmation modal */}
       <ConfirmationModal
         open={openConfirmationModal}
         onClose={handleCOnfirmationModalClose}

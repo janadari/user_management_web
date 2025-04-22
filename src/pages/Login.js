@@ -13,13 +13,14 @@ function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    login(() => navigate("/"));
-    // if (username === "admin" && password === "password") {
-    //   setError("");
-    //   login(() => navigate("/"));
-    // } else {
-    //   setError("Invalid username or password");
-    // }
+
+    // hardcoded username and password
+    if (username === "admin" && password === "password") {
+      setError("");
+      login(() => navigate("/"));
+    } else {
+      setError("Invalid username or password");
+    }
   };
 
   return (

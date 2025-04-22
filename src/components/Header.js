@@ -1,7 +1,6 @@
 import React from "react";
 import { useAuth } from "../auth/AuthProvider";
 import ThemeSwitcher from "./ThemeSwitcher";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
