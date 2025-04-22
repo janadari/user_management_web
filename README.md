@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+```User Management Web ~~~
+A simple user management system built as a test project.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+Setup Instructions:
+_____________________________________________________________
 
-### `npm start`
+1.Clone this repository:
+git clone https://github.com/janadari/user_management_web.git
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2.Open the project in VS Code (or your preferred editor).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3.Install dependencies:
+npm install
 
-### `npm test`
+4.Start the server:
+npm start
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Assumptions and Notes:
+_____________________________________________________________
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Since this is a test project,
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* Username and password fields include hints for easier identification.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Pagination or infinite scroll is not implemented as the user list is assumed to be small.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* Only the GET API is available to fetch results, so the user list updates only in memory after adding or editing users.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+* Data is not persisted (not saved to async storage), so changes will be lost upon refresh.
 
-## Learn More
+* New users are assigned an ID using the current timestamp.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* Search functionality works with first name and last name only.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Existing users show images from their image URLs; newly added users get a default image.
 
-### Code Splitting
+* Dark mode is enabled by default (personal preference).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* Responsive design: the same layout is used for both mobile and tablet views.
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+How to Test/Run:
+_____________________________________________________________
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+1.Follow the setup instructions above.
 
-### Advanced Configuration
+2.Use the provided username and password to sign in.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+3.You’ll see a list of users and available filters.
 
-### Deployment
+4.Use the FAB in the bottom-right corner to add a new user.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+To test mobile responsiveness:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1.Right-click on the webpage and select Inspect.
+
+2.Click the device toolbar icon in the top-left corner of the DevTools panel.
+
+3.Choose a mobile device or set custom dimensions.
+
+
+
+
+
+
+<!-- by janadari  -->
+```
