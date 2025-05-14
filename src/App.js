@@ -4,6 +4,7 @@ import AppRoutes from "./routes/Routes";
 import { AuthProvider } from "./auth/AuthProvider";
 import { ThemeProvider } from "./theme/ThemeProvider";
 import Header from "./components/Header";
+import SideBar from "components/SideBar";
 
 function App() {
   return (
@@ -11,7 +12,10 @@ function App() {
       <ThemeProvider>
         <Router>
           <Header />
-          <AppRoutes />
+          <div style={{ display: "flex" }}>
+            <SideBar />
+            <AppRoutes />
+          </div>
         </Router>
       </ThemeProvider>
     </AuthProvider>
