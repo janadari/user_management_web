@@ -12,10 +12,10 @@ function App() {
       <ThemeProvider>
         <Router>
           <Header />
-          <div style={{ display: "flex" }}>
-            <SideBar />
+         
+         
             <AppRoutes />
-          </div>
+
         </Router>
       </ThemeProvider>
     </AuthProvider>
